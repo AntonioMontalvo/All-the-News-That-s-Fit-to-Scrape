@@ -9,14 +9,25 @@ body{
 }
 #articles{
   width:60%;
-  height:700px;
+  height: 100%;
   display:inline-block;
-  overflow: auto;
+  overflow
+  border-style: solid;
+  color: grey;
 }
-#notes{
-  width:30%;
-  float:right;
+#notes {
+    width: 64%;
+    display: inline-table;
+    margin-bottom: 10px;
 }
+
+.input-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
 textarea, input{
   display:block;
   width:100%;
@@ -29,4 +40,77 @@ input{
 textarea{
   height:200px;
   font-size: 18px;
+}
+
+body {
+  margin: 0 20px;
+}
+
+header {
+    margin: 20px;
+}
+h1{
+  font-family: 'Allura', cursive;
+  font-size: 100px;
+  text-align: center
+}
+h4 {
+  text-align: center;
+  font-size: 30px;
+  border: 1px solid black;
+  padding: 21px;
+}
+h6 {
+  text-align: center;
+  font-size: 22px;
+  border: 1px solid black;
+  padding: 20px;
+}
+img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+footer {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.main-content {
+  margin: 0 12px;
+}
+.frame1{
+  border-bottom-style: double;
+  margin-bottom: 10px;
+}
+#keepleft{
+  text-align: left;
+}
+.keepcenter {
+  text-align: center;
+}
+#keepright {
+  text-align: right;
+}
+.maxHeadline {
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Pragati Narrow', sans-serif;
+  font-weight: bold;
+}
+.subcol {
+font-size: 20px;
+font-family: 'Martel', serif;
+}
+#cease{
+  font-size: 41px;
+  font-family: 'Cormorant Garamond', serif;
+}
+#abdicate {
+  font-size: 42px;
+  font-family: 'Martel', serif;
+}
+#tor {
+  text-align: right;
+}
+.marco {
+  border-bottom-style: ridge;
 }

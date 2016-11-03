@@ -1,6 +1,7 @@
 // dependencies
 var express = require('express');//http for servers
 var app = express();
+var path = require('path');
 
 var bodyParser = require('body-parser');//parses incoming requests
 var logger = require('morgan');//an http logger to help register requests to DB
@@ -22,11 +23,12 @@ app.use(bodyParser.urlencoded({//
   extended: false
 }));
 // static file support with public folder
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Database configuration with mongoose
-mongoose.connect('mongodb://localhost/homeWorkWeek18');// tell mongoose the connection and db name
+mongoose.connect('mongodb://localhost/homeWorkWeek18');// tell mongoose the connection and db name. If the db does not exist, create one.
 var db = mongoose.connection; //store the connection instance
 
 // show any mongoose errors

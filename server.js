@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');//parses incoming requests
 var logger = require('morgan');//an http logger to help register requests to DB
 var mongoose = require('mongoose'); //an object modeling tool for Mongo DB
 
+
+
 var request = require('request'); //makes http calls
 var cheerio = require('cheerio');// scrape a website using jQuery syntax 
 //handlebars

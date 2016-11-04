@@ -22,22 +22,25 @@ $(document).on('click', 'h3', function(){
   })
     // with that done, add the note information to the page
     .done(function( data ) {
-      console.log(data);
+
       // the title of the article
       $('#notes').append('<h5>' + data.title + '</h5>'); 
       // an input to enter a new title
-      $('#notes').append('<input id="titleinput" name="title" >'); 
+      // $('#notes').append('<input id="titleinput" name="title" >'); 
       // a textarea to add a new note body
       $('#notes').append('<textarea id="bodyinput" name="body"></textarea>'); 
       // a button to submit a new note, with the id of the article saved to it
       $('#notes').append('<button data-id="' + data._id + '" id="savenote">Save Comment</button>');
+      $('#leaveComment').append('<textarea id="bodyinput2" name="body"></textarea>'); 
+      // a button to submit a new note, with the id of the article saved to it
+      $('#leaveComment').append('<button data-id="' + data._id + '" id="remove">Remove Comment</button>');
 
       // if there's a note in the article
       if(data.note){
         // place the title of the note in the title input
-        $('#titleinput').val(data.note.title);
+        // $('#titleinput').val(data.note.title);
         // place the body of the note in the body textarea
-        $('#bodyinput').val(data.note.body);
+        $('#bodyinput2').val(data.note.body);
       }
     });
 });
@@ -46,6 +49,7 @@ $(document).on('click', 'h3', function(){
 $(document).on('click', '#next', function(){
     $('#articles').empty();
     $('#notes').empty();
+    $('#leaveComment').empty();
   next();
   i++;
   });
@@ -74,11 +78,38 @@ $(document).on('click', '#savenote', function(){
       console.log(data);
       // empty the notes section
       // $('#notes').empty();
+
     });
 
   // Also, remove the values entered in the input and textarea for note entry
   $('#titleinput').val("");
   $('#bodyinput').val("");
+  $('#leaveComment').empty();
 
 });
+
+
+
+// whenever someone clicks a p tag
+$(document).on('click', '#remove', function(){
+  // empty the notes from the note section
+  // $('#leaveComment').empty();
+  // save the id from the p tag
+  var thisId = $(this).attr('data-id');
+
+  // now make an ajax call for the Article
+  $.ajax({
+    method: "POST",
+    url: "/delete/" + thisId,
+  })
+    // with that done, add the note information to the page
+    .done(function( data ) {
+     $('#bodyinput2').val("");
+
+  
+      })
+    });
+
+
+
 

@@ -4,6 +4,20 @@ var router = express.Router();
 var request = require('request'); //makes http calls
 var cheerio = require('cheerio');// scrape a website using jQuery syntax 
 
+var mongojs = require('mongojs'); //A node.js module for mongodb, that emulates the official mongodb API as much as possible.
+//Database configuration
+
+var databaseUrl = "homeWorkWeek18";
+var collections = ["comments"];
+
+// hook mongojs config to db variable
+var db = mongojs(databaseUrl, collections);
+
+// log any mongojs errors to console
+db.on('error', function(err) {
+  console.log('Database Error:', err);
+});
+
 var Comment = require('../models/Comment.js');
 var Article = require('../models/Article.js');
 
@@ -120,6 +134,37 @@ router.post('/articles/:id', function(req, res){
 			});
 		}
 	});
+});
+
+// Delete One from the DB
+router.post('/delete/:id', function(req, res) {
+
+
+	Article.findOne({'_id': req.params.id})
+	.exec(function(err, doc){
+    // log any errors
+	    if (err){
+	      console.log(err);
+	      return res.json({success: false});
+	    } 
+	    // otherwise, send the doc to the browser as a json object
+	    else {
+	      var note_id = doc.note;
+	      doc.note = undefined;
+	      doc.save(function(err) {
+	      	if(err) {
+	      		console.log(err);
+	      		return res.json({success: false});
+	      	}
+	      	Comment.find({_id: note_id}).remove(function(err) {
+			    res.json({success: !err});
+	      	})
+	      })
+	    }
+	  });
+
+	  
+
 });
 
 

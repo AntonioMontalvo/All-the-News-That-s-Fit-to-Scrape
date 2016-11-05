@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({//
 // app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// mongoose.connect('mongodb://localhost/homeWorkWeek18');
 // Database configuration with mongoose
-mongoose.connect('mongodb://localhost/homeWorkWeek18');// tell mongoose the connection and db name. If the db does not exist, create one.
+mongoose.connect('mongodb://heroku_rtktdsqp:4jndghoq0n9ore2n7avareu2t3@ds139817.mlab.com:39817/heroku_rtktdsqp');// tell mongoose the connection and db name. If the db does not exist, create one.
 var db = mongoose.connection; //store the connection instance
 
 // show any mongoose errors
@@ -49,8 +49,11 @@ db.once('open', function() {
 var routes = require('./controllers/article_controller.js');
 app.use('/', routes);
 
+
+var port = process.env.PORT || 3000;
+
 // listen on port 3000
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('App running on port 3000!');
 });
 
